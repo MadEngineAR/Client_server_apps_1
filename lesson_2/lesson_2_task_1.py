@@ -7,7 +7,7 @@ from chardet import detect
 files_list = ['info_1.txt', 'info_2.txt', 'info_3.txt']
 
 
-def parse_data_to_csv(data):
+def get_data(data):
     os_prod_list = []
     os_name_list = []
     os_code_list = []
@@ -16,7 +16,6 @@ def parse_data_to_csv(data):
         with open(file, 'rb') as f:
             content = f.read()
         encoding = detect(content)['encoding']
-        print(encoding)
 
         with open(file, encoding=encoding) as f_n:
             f_n_reader = csv.reader(f_n)
@@ -24,7 +23,7 @@ def parse_data_to_csv(data):
                 patterns = ['Изготовитель системы', 'Название ОС', 'Код продукта', 'Тип системы']
                 for pattern in patterns:
                     if re.search(pattern, row[0]):
-                        new_row = "".join(row[0].split(pattern)).replace(":"," ").strip()
+                        new_row = "".join(row[0].split(pattern)).replace(":", " ").strip()
                         if pattern == 'Изготовитель системы':
                             os_prod_list.append(new_row)
                         elif pattern == 'Название ОС':
@@ -33,38 +32,47 @@ def parse_data_to_csv(data):
                             os_code_list.append(new_row)
                         else:
                             os_type_list.append(new_row)
-    #                     print(row[0], type(row[0]), new_row)
-    # print(os_prod_list)
-    # print(os_type_list)
-    # print(os_name_list)
-    # print(os_code_list)
-    main_data = patterns
+    main_data = ['Изготовитель системы', 'Название ОС', 'Код продукта', 'Тип системы']
     main_data_values = []
     i = 0
-    while i <   len(os_prod_list):
+    while i < len(os_prod_list):
         main_data_values.append([os_prod_list[i], os_name_list[i], os_code_list[i], os_type_list[i]])
         i += 1
-    print(main_data_values)
 
-    with open('main_data.txt', 'rb') as f:
+    f = open('main_data', 'w', encoding='utf-8')
+    f.close()
+
+    with open('main_data', 'rb') as f:
         content = f.read()
     encoding = detect(content)['encoding']
-    print(encoding)
-    with open('main_data.txt', 'w', encoding=encoding) as f_n_1:
+    with open('main_data', 'w', encoding=encoding) as f_n_1:
         for row in main_data_values:
-            f_n_1.write(str(row))
+            f_n_1.write(f'{str(row).strip("[]")}\n')
+
+    return main_data
 
 
+def write_to_csv(some_file):
+    data = [get_data(files_list)]
+
+    with open(some_file, 'rb') as f:
+        content = f.read()
+    encoding = detect(content)['encoding']
+
+    with open(some_file, encoding=encoding) as f_n:
+        for row in f_n:
+            data.append(row.rstrip("\n").split(", "))
+
+    f = open('REPORT.csv', 'w', encoding='utf-8')
+    f.close()
+
+    with open('REPORT.csv', 'rb') as f:
+        content = f.read()
+    encoding = detect(content)['encoding']
+
+    with open('REPORT.csv', 'w', encoding=encoding) as f_n:
+        f_n_writer = csv.writer(f_n)
+        f_n_writer.writerows(data)
 
 
-
-
-
-
-
-
-
-
-parse_data_to_csv(files_list)
-
-
+write_to_csv('main_data')
