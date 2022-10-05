@@ -40,6 +40,7 @@ def get_data(data):
         i += 1
 
     f = open('main_data', 'w', encoding='utf-8')
+    f.write('тест')
     f.close()
 
     with open('main_data', 'rb') as f:
@@ -62,8 +63,9 @@ def write_to_csv(some_file):
     with open(some_file, encoding=encoding) as f_n:
         for row in f_n:
             data.append(row.rstrip("\n").split(", "))
-
+    print(data)
     f = open('REPORT.csv', 'w', encoding='utf-8')
+    f.write('тест')
     f.close()
 
     with open('REPORT.csv', 'rb') as f:
