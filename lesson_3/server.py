@@ -1,5 +1,3 @@
-"""Программа-сервер"""
-
 import socket
 import sys
 import json
@@ -9,14 +7,6 @@ from common.utils import get_message, send_message
 
 
 def process_client_message(message):
-    '''
-    Обработчик сообщений от клиентов, принимает словарь -
-    сообщение от клинта, проверяет корректность,
-    возвращает словарь-ответ для клиента
-
-    :param message:
-    :return:
-    '''
     if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
             and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
         return {RESPONSE: 200}
@@ -36,15 +26,16 @@ def main():
     try:
         if '-p' in sys.argv:
             listen_port = int(sys.argv[sys.argv.index('-p') + 1])
+            print(sys.argv)
         else:
             listen_port = DEFAULT_PORT
-        if listen_port < 1024 or listen_port > 65535:
+        if 1024 > listen_port > 65535:
             raise ValueError
     except IndexError:
         print('После параметра -\'p\' необходимо указать номер порта.')
         sys.exit(1)
     except ValueError:
-        print('Номер порта может быть указано только в диапазоне от 1024 до 65535.')
+        print('Номер порт должен находиться в диапазоне  [1024 - 65535]')
         sys.exit(1)
 
     # Затем загружаем какой адрес слушать
@@ -57,20 +48,16 @@ def main():
 
     except IndexError:
         print(
-            'После параметра \'a\'- необходимо указать адрес, который будет слушать сервер.')
+            'После параметра \'a\'- необходимо указать адрес')
         sys.exit(1)
 
-    # Готовим сокет
-
-    transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    transport.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    transport.bind((listen_address, listen_port))
-
-    # Слушаем порт
-    transport.listen(MAX_CONNECTIONS)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind((listen_address, listen_port))
+    s.listen(MAX_CONNECTIONS)
 
     while True:
-        client, client_address = transport.accept()
+        client, client_address = s.accept()
         try:
             message_from_client = get_message(client)
             print(message_from_client)
@@ -78,7 +65,7 @@ def main():
             send_message(client, response)
             client.close()
         except (ValueError, json.JSONDecodeError):
-            print('Принято некорректное сообщение от клиента.')
+            print('Некорректное сообщение от клиента')
             client.close()
 
 
