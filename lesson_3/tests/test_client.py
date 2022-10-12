@@ -32,8 +32,10 @@ class TestClient(TestCase):
         self.assertEqual(result, self.data)
 
     def test_response_process(self):
+        # Testing response=200
         result_200 = response_process(self.server_answer_200)
         self.assertEqual(result_200, self.result_200)
+        # Testing response=400
         result_400 = response_process(self.server_answer_400)
         self.assertEqual(result_400, self.result_400)
         self.assertRaises(ValueError,response_process, self.result_error)

@@ -1,11 +1,8 @@
 import sys
 import os
+sys.path.append(os.path.join(os.getcwd(), '..'))
 from unittest import TestCase
 from unittest.mock import patch
-#
-# from lesson_3 import server
-
-sys.path.append(os.path.join(os.getcwd(), '..'))
 from server import process_client_message
 from common.variables import RESPONSE, ERROR, USER, ACCOUNT_NAME, TIME, ACTION, PRESENCE, DEFAULT_PORT
 
@@ -36,15 +33,18 @@ class TestServer(TestCase):
             RESPONSE: 400,
             ERROR: 'Bad Request'}
 
-    def test_with_mock_patch_function_my_func_true_without_decorator(self):
+    def test_with_mock_patch_function(self):
         """
-        Используем функцию assertRaises и unittest.mock.patch
-        для проверки числа аргументов, переданных при запуске файла
+        Используем функцию assertEqual и unittest.mock.patch
+        порта
         """
-        # main.server_address = 7777
         with patch.object(sys, 'argv', ['server.py', '-p', 8888]):
-
-            self.assertNotEqual(8888, DEFAULT_PORT)
+            if '-p' in sys.argv:
+                listen_port = int(sys.argv[sys.argv.index('-p') + 1])
+                if DEFAULT_PORT != listen_port:
+                    self.assertNotEqual(listen_port, DEFAULT_PORT)
+            listen_port = DEFAULT_PORT
+            self.assertEqual(listen_port, DEFAULT_PORT)
 
     def test_process_client_message(self):
         # Testing correct_data
@@ -53,7 +53,6 @@ class TestServer(TestCase):
         # Testing incorrect_data
         result = process_client_message(self.incorrect_data)
         self.assertEqual(result, self.server_answer_400)
-
 
     def tearDown(self) -> None:
         pass
