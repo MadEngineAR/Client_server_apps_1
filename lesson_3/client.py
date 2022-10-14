@@ -1,69 +1,67 @@
-"""Программа-клиент"""
-
 import sys
 import json
 import socket
 import time
-from common.variables import ACTION, PRESENCE, TIME, USER, ACCOUNT_NAME, \
-    RESPONSE, ERROR, DEFAULT_IP_ADDRESS, DEFAULT_PORT
+from common.variables import DEFAULT_IP_ADDRESS, DEFAULT_PORT
 from common.utils import get_message, send_message
+import logging
+import logs.client_log_config
 
+logger = logging.getLogger('client')
+def make_presence(login='Guest'):
+    logger.debug('Сформировано сообщение серверу')
 
-def create_presence(account_name='Guest'):
-    '''
-    Функция генерирует запрос о присутствии клиента
-    :param account_name:
-    :return:
-    '''
-    out = {
-        ACTION: PRESENCE,
-        TIME: time.time(),
-        USER: {
-            ACCOUNT_NAME: account_name
+    # Генерация запроса о присутствии клиента
+    data = {
+        'action': 'presence',
+        'time': time.time(),
+        'type': 'status',
+        'user': {
+            "account_name": login,
+            "status": "Yep, I am here!"
         }
     }
-    return out
+    return data
 
 
-def process_ans(message):
-    '''
-    Функция разбирает ответ сервера
-    :param message:
-    :return:
-    '''
-    if RESPONSE in message:
-        if message[RESPONSE] == 200:
-            return '200 : OK'
-        return f'400 : {message[ERROR]}'
+def response_process(message):
+    # Разбор ответ сервера
+    if 'response' in message:
+        if message['response'] == 200:
+            logger.info('Соединение с сервером: нормальное')
+            return 'На связи!'
+        logger.warning('Bad request 400')
+        return f'Bad request 400'
+    logger.error('Ошибка чтения данных')
     raise ValueError
 
 
 def main():
-    '''Загружаем параметы коммандной строки'''
+    # Обработка параметров коммандной строки
     try:
         server_address = sys.argv[1]
         server_port = int(sys.argv[2])
-        if server_port < 1024 or server_port > 65535:
+        if 1024 > server_port > 65535:
             raise ValueError
     except IndexError:
         server_address = DEFAULT_IP_ADDRESS
         server_port = DEFAULT_PORT
     except ValueError:
-        print('В качестве порта может быть указано только число в диапазоне от 1024 до 65535.')
+        logger.error('Номер порт должен находиться в диапазоне  [1024 - 65535]')
+        print('Номер порт должен находиться в диапазоне  [1024 - 65535]')
         sys.exit(1)
 
     # Инициализация сокета и обмен
-
-    transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    transport.connect((server_address, server_port))
-    message_to_server = create_presence()
-    send_message(transport, message_to_server)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((server_address, server_port))
+    send_message(s, make_presence())
     try:
-        answer = process_ans(get_message(transport))
-        print(answer)
+        server_answer = response_process(get_message(s))
+        # server_answer = response_process('1') - Вызов ValueError - запись в лог - ERROR
+        return server_answer
     except (ValueError, json.JSONDecodeError):
-        print('Не удалось декодировать сообщение сервера.')
+        return 'Ошибка декодирования'
 
 
 if __name__ == '__main__':
-    main()
+    print(main())
