@@ -1,9 +1,31 @@
 """Утилиты"""
-
+import sys
 import json
+import logging
 from common.variables import MAX_PACKAGE_LENGTH, ENCODING
 
+"""Простейший декоратор-класс"""
 
+
+class Log:
+    """Класс-декоратор"""
+    def __call__(self, func):
+        def decorated(*args, **kwargs):
+            """Обертка"""
+            res = func(*args, **kwargs)
+            script = sys.argv[0].split('/')[-1]
+            if script == 'client.py':
+                logger = logging.getLogger('client')
+                logger.info(f'client: {func.__name__}({args}, {kwargs})')
+                # print(f'client: {func.__name__}({args}, {kwargs}) = {res}')
+            elif script == 'server.py':
+                logger = logging.getLogger('server')
+                logger.info(f'server: {func.__name__}({args}, {kwargs})')
+            return res
+        return decorated
+
+
+@Log()
 def get_message(client):
     """
     Утилита приёма и декодирования сообщения.
@@ -23,6 +45,7 @@ def get_message(client):
     raise ValueError
 
 
+@Log()
 def send_message(sock, message):
     """
     Утилита кодирования и отправки сообщения:

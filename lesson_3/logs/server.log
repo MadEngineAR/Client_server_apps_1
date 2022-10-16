@@ -4,3 +4,46 @@
 2022-10-14 14:11:20,477 - INFO     - PORT : 7777 ,IP_ADDRESS  
 2022-10-14 14:11:25,649 - DEBUG    - Получено сообщение от клиента 1 
 2022-10-14 14:11:25,649 - ERROR    - Bad request 400 
+2022-10-16 18:39:44,642 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-16 18:39:50,324 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665927590.324609, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:39:50,324 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:43:20,641 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665927799.792762, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:43:20,641 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:45:39,261 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665927935.352584, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:45:39,261 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:47:28,305 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665928042.014442, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:47:28,306 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:48:43,846 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665928123.846283, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:48:43,846 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:49:25,540 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665928165.5401, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:49:25,540 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:51:12,814 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665928272.814154, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:51:12,814 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:53:07,264 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665928387.264012, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:53:07,264 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:55:38,340 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665928533.230001, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:55:38,340 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 18:56:02,103 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665928562.102966, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 18:56:02,103 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 19:57:20,226 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665932240.226502, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 19:57:20,226 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 19:57:30,959 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665932250.959178, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 19:57:30,959 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 19:58:48,863 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-16 19:58:53,471 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665932333.471339, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 19:58:53,471 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 20:03:14,160 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-16 20:05:44,745 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-16 20:05:49,135 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665932749.135144, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 20:05:49,135 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 20:07:35,787 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665932855.7875898, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 20:07:35,787 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 20:09:59,113 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-16 20:11:27,139 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-16 20:12:39,717 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-16 20:13:23,398 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-16 20:13:26,812 - INFO     - server: get_message((<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49532)>,), {}) 
+2022-10-16 20:13:26,812 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665933206.811907, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-16 20:13:26,812 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-16 20:13:26,812 - INFO     - server: send_message((<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49532)>, {'response': 200}), {}) 
+2022-10-16 20:17:11,206 - INFO     - PORT : 7777 ,IP_ADDRESS  

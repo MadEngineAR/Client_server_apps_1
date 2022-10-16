@@ -8,6 +8,8 @@ import logging
 import logs.client_log_config
 
 logger = logging.getLogger('client')
+
+
 def make_presence(login='Guest'):
     logger.debug('Сформировано сообщение серверу')
 

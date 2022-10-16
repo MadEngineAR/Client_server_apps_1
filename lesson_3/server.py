@@ -10,11 +10,12 @@ import logs.server_log_config
 
 logger = logging.getLogger('server')
 
+
 def process_client_message(message):
     logger.debug(f'Получено сообщение от клиента {message}')
     if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
             and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
-        msg =  {RESPONSE: 200}
+        msg = {RESPONSE: 200}
         logger.info(f'Соединение с клиентом: НОРМАЛЬНОЕ {msg}')
         return {RESPONSE: 200}
     msg = {
