@@ -2,6 +2,8 @@
 import sys
 import json
 import logging
+import traceback
+
 from common.variables import MAX_PACKAGE_LENGTH, ENCODING
 
 """Простейший декоратор-класс"""
@@ -14,13 +16,19 @@ class Log:
             """Обертка"""
             res = func(*args, **kwargs)
             script = sys.argv[0].split('/')[-1]
+            function_call = repr(traceback.extract_stack()[1]).split(' ')[-1].strip('>')
             if script == 'client.py':
+                # traceback.print_stack()
+                # print(function_call)
                 logger = logging.getLogger('client')
-                logger.info(f'client: {func.__name__}({args}, {kwargs})')
+                logger.info(f'Функция {func.__name__} вызвана из функции {function_call}')
+                logger.debug(f'client: {func.__name__}({args}, {kwargs})')
                 # print(f'client: {func.__name__}({args}, {kwargs}) = {res}')
             elif script == 'server.py':
+                print(function_call)
                 logger = logging.getLogger('server')
-                logger.info(f'server: {func.__name__}({args}, {kwargs})')
+                logger.debug(f'server: {func.__name__}({args}, {kwargs})')
+                logger.info(f'Функция {func.__name__} вызвана из функции {function_call}')
             return res
         return decorated
 

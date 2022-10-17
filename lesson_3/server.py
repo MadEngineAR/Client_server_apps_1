@@ -29,7 +29,7 @@ def process_client_message(message):
     }
 
 
-def main():
+def main_server():
     """
     Загрузка параметров командной строки, если нет параметров, то задаём значения по умолчанию.
     Сначала обрабатываем порт:
@@ -78,7 +78,7 @@ def main():
         try:
             message_from_client = get_message(client)
             # message_from_client = '1' - Вызов ошибки в лог
-            print(message_from_client)
+            # print(message_from_client)
             response = process_client_message(message_from_client)
             send_message(client, response)
             client.close()
@@ -88,4 +88,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main_server()

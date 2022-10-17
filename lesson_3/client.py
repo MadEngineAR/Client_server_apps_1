@@ -38,7 +38,7 @@ def response_process(message):
     raise ValueError
 
 
-def main():
+def main_client():
     # Обработка параметров коммандной строки
     try:
         server_address = sys.argv[1]
@@ -66,4 +66,4 @@ def main():
 
 
 if __name__ == '__main__':
-    print(main())
+    print(main_client())
