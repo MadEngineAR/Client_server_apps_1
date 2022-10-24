@@ -1,14 +1,12 @@
 import socket
 import sys
 import json
-
+from my_socket import MySocket
 from select import select
-
 from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT
 from common.utils import get_message, send_message
 import logging
-import logs.server_log_config
 
 
 logger = logging.getLogger('server')
@@ -71,39 +69,59 @@ def main_server():
         sys.exit(1)
 
     logger.info(f'PORT : {listen_port} ,IP_ADDRESS {listen_address}')
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s = MySocket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.bind((listen_address, listen_port))
     s.listen(MAX_CONNECTIONS)
     s.settimeout(1)
     client_sockets = []
-
-
+    client_sockets_senders = []
+    client_sockets_listeners = []
+    messages = []
     while True:
         try:
             client, client_address = s.accept()
+            print(client.__class__)
         except OSError as e:
-             print(e.errno)
+            print(e.errno)
         else:
+            if client.is_sender:
+                client_sockets_senders.append(client)
+            elif s.is_listener:
+                client_sockets_listeners.append(client)
             client_sockets.append(client)
             # print(client_sockets)
         finally:
             for client_socket in client_sockets:
                 cl_read = []
-                print(cl_read)
-                cl_read, _, _ = select(client_sockets, [], [], 0)
-                print(cl_read)
+                cl_write = []
+                cl_read, cl_write, _ = select(client_sockets_senders, client_sockets_listeners, [], 0)
+                # print(cl_read)
                 if client_socket in cl_read:
                     try:
                         message_from_client = get_message(client_socket)
+                        messages.append(message_from_client)
                         # message_from_client = '1' - Вызов ошибки в лог
-                        # print(message_from_client)
-                        response = process_client_message(message_from_client)
-                        send_message(client_socket, response)
+                        print(message_from_client)
+                        # response = process_client_message(message_from_client)
+                        # send_message(client_socket, response)
                         # client_socket.close()
+                        cl_read.remove(client_socket)
+
                     except (ValueError, json.JSONDecodeError):
                         print('Некорректное сообщение от клиента')
                         # client_socket.close()
+                    except ConnectionError:
+                        print('<>')
+                if client_socket in cl_write:
+                    for message in messages:
+                        try:
+                            response = process_client_message(message)
+                            send_message(client_socket, response)
+                            print(f'Отправлено {message} клиенту {client_socket}')
+                            cl_write.remove(client_socket)
+                        except BrokenPipeError:
+                            print('Вах')
 
 
 if __name__ == '__main__':

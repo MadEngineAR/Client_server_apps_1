@@ -55,17 +55,15 @@ def main_client():
 
     # Инициализация сокета и обмен
     s = MySocket(socket.AF_INET, socket.SOCK_STREAM)
-    s.is_sender = True
     s.connect((server_address, server_port))
-    send_message(s, make_presence())
-    return f' РЕЖИМ - ОТПРАВКА {s}'
-
-    # try:
-    #     server_answer = response_process(get_message(s))
-    #     # server_answer = response_process('1') - Вызов ValueError - запись в лог - ERROR
-    #     return server_answer
-    # except (ValueError, json.JSONDecodeError):
-    #     return 'Ошибка декодирования'
+    s.is_listener = True
+    # send_message(s, make_presence())
+    try:
+        server_answer = response_process(get_message(s))
+        # server_answer = response_process('1') - Вызов ValueError - запись в лог - ERROR
+        return server_answer
+    except (ValueError, json.JSONDecodeError):
+        return 'Ошибка декодирования'
 
 
 if __name__ == '__main__':
