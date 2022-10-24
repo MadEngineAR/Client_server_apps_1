@@ -58,7 +58,11 @@ def main_client():
     s.is_sender = True
     s.connect((server_address, server_port))
     send_message(s, make_presence())
-    return f' РЕЖИМ - ОТПРАВКА {s}'
+    s.getsockname()
+
+    return f' РЕЖИМ - ОТПРАВКА {s}', s
+
+
 
     # try:
     #     server_answer = response_process(get_message(s))

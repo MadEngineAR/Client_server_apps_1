@@ -6,7 +6,9 @@ from select import select
 from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT
 from common.utils import get_message, send_message
+from client import s_sender
 import logging
+
 
 
 logger = logging.getLogger('server')
@@ -81,21 +83,18 @@ def main_server():
     while True:
         try:
             client, client_address = s.accept()
+            x = s_sender
             print(client.__class__)
         except OSError as e:
             print(e.errno)
         else:
-            if client.is_sender:
-                client_sockets_senders.append(client)
-            elif s.is_listener:
-                client_sockets_listeners.append(client)
             client_sockets.append(client)
             # print(client_sockets)
         finally:
+            cl_read = []
+            cl_write = []
             for client_socket in client_sockets:
-                cl_read = []
-                cl_write = []
-                cl_read, cl_write, _ = select(client_sockets_senders, client_sockets_listeners, [], 0)
+                cl_read, cl_write, _ = select(client_sockets, client_sockets, [], 0)
                 # print(cl_read)
                 if client_socket in cl_read:
                     try:
@@ -106,13 +105,13 @@ def main_server():
                         # response = process_client_message(message_from_client)
                         # send_message(client_socket, response)
                         # client_socket.close()
-                        cl_read.remove(client_socket)
-
                     except (ValueError, json.JSONDecodeError):
                         print('Некорректное сообщение от клиента')
                         # client_socket.close()
+                        cl_read.remove(client_socket)
                     except ConnectionError:
                         print('<>')
+                        cl_read.remove(client_socket)
                 if client_socket in cl_write:
                     for message in messages:
                         try:
@@ -122,6 +121,7 @@ def main_server():
                             cl_write.remove(client_socket)
                         except BrokenPipeError:
                             print('Вах')
+                            cl_write.remove(client_socket)
 
 
 if __name__ == '__main__':
