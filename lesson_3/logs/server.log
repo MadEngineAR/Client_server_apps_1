@@ -1,80 +1,162 @@
-2022-10-17 09:03:30,445 - INFO     - PORT : 7777 ,IP_ADDRESS  
-2022-10-17 09:03:34,467 - INFO     - server: get_message((<socket.socket fd=352, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61933)>,), {}) 
-2022-10-17 09:03:34,468 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665979414.4659913, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:03:34,468 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:03:34,468 - INFO     - server: send_message((<socket.socket fd=352, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 61933)>, {'response': 200}), {}) 
-2022-10-17 09:09:01,719 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62195)>,), {}) 
-2022-10-17 09:09:01,722 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665979741.6596875, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:09:01,726 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:09:01,727 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62195)>, {'response': 200}), {}) 
-2022-10-17 09:14:18,493 - INFO     - server: get_message((<socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62366)>,), {}) 
-2022-10-17 09:14:18,494 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665980058.4868567, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:14:18,495 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:14:18,495 - INFO     - server: send_message((<socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62366)>, {'response': 200}), {}) 
-2022-10-17 09:22:48,913 - INFO     - server: get_message((<socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62541)>,), {}) 
-2022-10-17 09:22:48,916 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665980568.9006405, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:22:48,916 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:22:48,917 - INFO     - server: send_message((<socket.socket fd=448, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62541)>, {'response': 200}), {}) 
-2022-10-17 09:24:38,589 - INFO     - server: get_message((<socket.socket fd=452, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62574)>,), {}) 
-2022-10-17 09:24:38,590 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665980678.5896213, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:24:38,594 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:24:38,594 - INFO     - server: send_message((<socket.socket fd=452, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62574)>, {'response': 200}), {}) 
-2022-10-17 09:26:16,233 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62623)>,), {}) 
-2022-10-17 09:26:16,235 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665980776.2221463, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:26:16,235 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:26:16,236 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62623)>, {'response': 200}), {}) 
-2022-10-17 09:26:42,651 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62631)>,), {}) 
-2022-10-17 09:26:42,652 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665980802.651046, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:26:42,652 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:26:42,652 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62631)>, {'response': 200}), {}) 
-2022-10-17 09:28:55,651 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62686)>,), {}) 
-2022-10-17 09:28:55,651 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665980935.6506286, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:28:55,651 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:28:55,651 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62686)>, {'response': 200}), {}) 
-2022-10-17 09:30:09,082 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62693)>,), {}) 
-2022-10-17 09:30:09,082 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665981009.0823083, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:30:09,083 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:30:09,083 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62693)>, {'response': 200}), {}) 
-2022-10-17 09:45:29,622 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62881)>,), {}) 
-2022-10-17 09:45:29,624 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665981929.610112, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:45:29,624 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:45:29,625 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62881)>, {'response': 200}), {}) 
-2022-10-17 09:46:16,742 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62932)>,), {}) 
-2022-10-17 09:46:16,743 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665981976.7420533, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:46:16,743 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:46:16,743 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62932)>, {'response': 200}), {}) 
-2022-10-17 09:47:19,575 - INFO     - server: get_message((<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62946)>,), {}) 
-2022-10-17 09:47:19,575 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665982039.5731828, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:47:19,576 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:47:19,576 - INFO     - server: send_message((<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 62946)>, {'response': 200}), {}) 
-2022-10-17 09:49:52,291 - INFO     - server: get_message((<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63005)>,), {}) 
-2022-10-17 09:49:52,299 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665982192.2520595, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:49:52,301 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:49:52,301 - INFO     - server: send_message((<socket.socket fd=444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63005)>, {'response': 200}), {}) 
-2022-10-17 09:51:34,437 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63044)>,), {}) 
-2022-10-17 09:51:34,438 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665982294.4376373, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:51:34,438 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:51:34,439 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63044)>, {'response': 200}), {}) 
-2022-10-17 09:52:33,254 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63051)>,), {}) 
-2022-10-17 09:52:33,254 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665982353.2547817, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:52:33,255 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:52:33,255 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63051)>, {'response': 200}), {}) 
-2022-10-17 09:53:11,269 - INFO     - server: get_message((<socket.socket fd=452, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63053)>,), {}) 
-2022-10-17 09:53:11,269 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665982391.2691236, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:53:11,269 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:53:11,270 - INFO     - server: send_message((<socket.socket fd=452, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63053)>, {'response': 200}), {}) 
-2022-10-17 09:54:52,031 - INFO     - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63088)>,), {}) 
-2022-10-17 09:54:52,031 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665982492.0302622, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:54:52,031 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:54:52,032 - INFO     - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63088)>, {'response': 200}), {}) 
-2022-10-17 09:55:12,805 - INFO     - server: get_message((<socket.socket fd=452, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63090)>,), {}) 
-2022-10-17 09:55:12,805 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665982512.8058376, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:55:12,805 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:55:12,805 - INFO     - server: send_message((<socket.socket fd=452, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63090)>, {'response': 200}), {}) 
-2022-10-17 09:55:22,019 - INFO     - PORT : 7777 ,IP_ADDRESS  
-2022-10-17 09:55:25,719 - DEBUG    - server: get_message((<socket.socket fd=368, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63092)>,), {}) 
-2022-10-17 09:55:25,719 - INFO     - Функция get_message вызвана из функции main_server 
-2022-10-17 09:55:25,719 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1665982525.7189112, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
-2022-10-17 09:55:25,719 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
-2022-10-17 09:55:25,720 - DEBUG    - server: send_message((<socket.socket fd=368, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 63092)>, {'response': 200}), {}) 
-2022-10-17 09:55:25,720 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:18:13,270 - DEBUG    - server: get_message((<socket.socket fd=472, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52584)>,), {}) 
+2022-10-24 15:18:13,279 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:18:13,279 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666606692.2570717, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:18:13,279 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:18:13,280 - DEBUG    - server: send_message((<socket.socket fd=472, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52584)>, {'response': 200}), {}) 
+2022-10-24 15:18:13,280 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:18:21,277 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:18:40,221 - DEBUG    - server: get_message((<socket.socket fd=376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52585)>,), {}) 
+2022-10-24 15:18:40,221 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:18:40,221 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666606719.2050514, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:18:40,221 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:18:40,222 - DEBUG    - server: send_message((<socket.socket fd=376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52585)>, {'response': 200}), {}) 
+2022-10-24 15:18:40,222 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:21:19,964 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:21:25,838 - DEBUG    - server: get_message((<socket.socket fd=368, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52598)>,), {}) 
+2022-10-24 15:21:25,838 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:21:25,838 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666606884.859014, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:21:25,838 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:21:25,839 - DEBUG    - server: send_message((<socket.socket fd=368, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52598)>, {'response': 200}), {}) 
+2022-10-24 15:21:25,839 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:21:57,647 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:22:02,701 - DEBUG    - server: get_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52602)>,), {}) 
+2022-10-24 15:22:02,701 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:22:02,701 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666606921.6859262, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:22:02,701 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:22:02,702 - DEBUG    - server: send_message((<socket.socket fd=440, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52602)>, {'response': 200}), {}) 
+2022-10-24 15:22:02,702 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:22:43,699 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:22:50,170 - DEBUG    - server: get_message((<socket.socket fd=480, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52630)>,), {}) 
+2022-10-24 15:22:50,170 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:22:50,170 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666606969.163479, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:22:50,170 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:22:50,171 - DEBUG    - server: send_message((<socket.socket fd=480, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52630)>, {'response': 200}), {}) 
+2022-10-24 15:22:50,171 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:23:13,827 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:23:21,270 - DEBUG    - server: get_message((<socket.socket fd=332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52634)>,), {}) 
+2022-10-24 15:23:21,270 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:23:21,270 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666607000.255145, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:23:21,270 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:23:21,271 - DEBUG    - server: send_message((<socket.socket fd=332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52634)>, {'response': 200}), {}) 
+2022-10-24 15:23:21,271 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:24:06,405 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:24:16,145 - DEBUG    - server: get_message((<socket.socket fd=340, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52641)>,), {}) 
+2022-10-24 15:24:16,145 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:24:16,145 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666607055.1295464, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:24:16,145 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:24:16,146 - DEBUG    - server: send_message((<socket.socket fd=340, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52641)>, {'response': 200}), {}) 
+2022-10-24 15:24:16,146 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:29:40,983 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:29:50,590 - DEBUG    - server: get_message((<socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52772)>,), {}) 
+2022-10-24 15:29:50,590 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:29:50,590 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666607389.5817163, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:29:50,590 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:29:50,592 - DEBUG    - server: send_message((<socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52772)>, {'response': 200}), {}) 
+2022-10-24 15:29:50,592 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:30:40,628 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:31:03,357 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:31:08,590 - DEBUG    - server: get_message((<socket.socket fd=488, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52799)>,), {}) 
+2022-10-24 15:31:08,590 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:31:08,590 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666607467.5769582, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:31:08,590 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:31:08,591 - DEBUG    - server: send_message((<socket.socket fd=488, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52799)>, {'response': 200}), {}) 
+2022-10-24 15:31:08,591 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:34:09,344 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:34:14,212 - DEBUG    - server: get_message((<socket.socket fd=344, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52828)>,), {}) 
+2022-10-24 15:34:14,212 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:34:14,212 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666607653.195104, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:34:14,212 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:34:14,213 - DEBUG    - server: send_message((<socket.socket fd=344, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 52828)>, {'response': 200}), {}) 
+2022-10-24 15:34:14,213 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:45:16,908 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:45:22,890 - DEBUG    - server: get_message((<socket.socket fd=316, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53061)>,), {}) 
+2022-10-24 15:45:22,890 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:45:22,890 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666608321.8804626, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:45:22,890 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:45:22,891 - DEBUG    - server: send_message((<socket.socket fd=316, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53061)>, {'response': 200}), {}) 
+2022-10-24 15:45:22,891 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:45:45,779 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:46:08,808 - DEBUG    - server: get_message((<socket.socket fd=408, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53068)>,), {}) 
+2022-10-24 15:46:08,808 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:46:08,808 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666608367.7950943, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:46:08,808 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:46:08,809 - DEBUG    - server: send_message((<socket.socket fd=408, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53068)>, {'response': 200}), {}) 
+2022-10-24 15:46:08,809 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:47:45,217 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:48:37,913 - DEBUG    - server: get_message((<socket.socket fd=736, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53082)>,), {}) 
+2022-10-24 15:48:37,914 - INFO     - Функция get_message вызвана из функции main 
+2022-10-24 15:48:38,515 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666608472.6376238, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:48:38,515 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:48:39,137 - DEBUG    - server: send_message((<socket.socket fd=736, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53082)>, {'response': 200}), {}) 
+2022-10-24 15:48:39,138 - INFO     - Функция send_message вызвана из функции main 
+2022-10-24 15:49:52,042 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:49:57,990 - DEBUG    - server: get_message((<socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53093)>,), {}) 
+2022-10-24 15:49:57,990 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:49:57,990 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666608596.988641, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:49:57,990 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:49:57,991 - DEBUG    - server: send_message((<socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53093)>, {'response': 200}), {}) 
+2022-10-24 15:49:57,991 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:50:09,951 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:50:16,949 - DEBUG    - server: get_message((<socket.socket fd=344, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53096)>,), {}) 
+2022-10-24 15:50:16,949 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:50:16,949 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666608615.9408052, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:50:16,949 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:50:16,950 - DEBUG    - server: send_message((<socket.socket fd=344, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53096)>, {'response': 200}), {}) 
+2022-10-24 15:50:16,950 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:50:53,863 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:50:58,166 - DEBUG    - server: get_message((<socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53101)>,), {}) 
+2022-10-24 15:50:58,166 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:50:58,166 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666608658.1609986, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:50:58,166 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:50:58,167 - DEBUG    - server: send_message((<socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53101)>, {'response': 200}), {}) 
+2022-10-24 15:50:58,167 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:51:25,457 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:51:30,377 - DEBUG    - server: get_message((<socket.socket fd=424, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53102)>,), {}) 
+2022-10-24 15:51:30,377 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:51:30,377 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666608689.3658175, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:51:30,377 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:51:30,378 - DEBUG    - server: send_message((<socket.socket fd=424, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53102)>, {'response': 200}), {}) 
+2022-10-24 15:51:30,378 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:52:09,459 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:52:15,373 - DEBUG    - server: get_message((<socket.socket fd=404, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53124)>,), {}) 
+2022-10-24 15:52:15,373 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:52:15,373 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666608734.3630662, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:52:15,374 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:52:15,374 - DEBUG    - server: send_message((<socket.socket fd=404, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53124)>, {'response': 200}), {}) 
+2022-10-24 15:52:15,374 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 15:56:51,015 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:57:02,660 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 15:57:09,845 - DEBUG    - server: get_message((<socket.socket fd=468, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54162)>,), {}) 
+2022-10-24 15:57:09,845 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 15:57:09,845 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666609028.8350484, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 15:57:09,845 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 15:57:09,846 - DEBUG    - server: send_message((<socket.socket fd=468, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54162)>, {'response': 200}), {}) 
+2022-10-24 15:57:09,846 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 16:01:58,725 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 16:03:24,452 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 16:03:31,696 - DEBUG    - server: get_message((<socket.socket fd=364, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54232)>,), {}) 
+2022-10-24 16:03:31,696 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 16:03:31,696 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666609410.6813476, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 16:03:31,696 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 16:03:31,697 - DEBUG    - server: send_message((<socket.socket fd=364, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54232)>, {'response': 200}), {}) 
+2022-10-24 16:03:31,697 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 16:06:38,435 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 16:10:05,432 - DEBUG    - server: get_message((<socket.socket fd=1228, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54316)>,), {}) 
+2022-10-24 16:10:05,432 - INFO     - Функция get_message вызвана из функции main 
+2022-10-24 16:10:10,228 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666609768.7838151, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 16:10:10,228 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 16:10:14,286 - DEBUG    - server: send_message((<socket.socket fd=1228, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54316)>, {'response': 200}), {}) 
+2022-10-24 16:10:14,286 - INFO     - Функция send_message вызвана из функции main 
+2022-10-24 16:13:15,737 - INFO     - PORT : 7777 ,IP_ADDRESS  
+2022-10-24 16:13:22,046 - DEBUG    - server: get_message((<socket.socket fd=460, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54339)>,), {}) 
+2022-10-24 16:13:22,046 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 16:13:22,046 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666610001.0381117, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 16:13:22,046 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 16:13:22,047 - DEBUG    - server: send_message((<socket.socket fd=460, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54339)>, {'response': 200}), {}) 
+2022-10-24 16:13:22,047 - INFO     - Функция send_message вызвана из функции main_server 
+2022-10-24 16:13:50,486 - DEBUG    - server: get_message((<socket.socket fd=464, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54367)>,), {}) 
+2022-10-24 16:13:50,486 - INFO     - Функция get_message вызвана из функции main_server 
+2022-10-24 16:13:50,486 - DEBUG    - Получено сообщение от клиента {'action': 'presence', 'time': 1666610029.4791749, 'type': 'status', 'user': {'account_name': 'Guest', 'status': 'Yep, I am here!'}} 
+2022-10-24 16:13:50,486 - INFO     - Соединение с клиентом: НОРМАЛЬНОЕ {'response': 200} 
+2022-10-24 16:13:50,487 - DEBUG    - server: send_message((<socket.socket fd=464, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54367)>, {'response': 200}), {}) 
+2022-10-24 16:13:50,487 - INFO     - Функция send_message вызвана из функции main_server 

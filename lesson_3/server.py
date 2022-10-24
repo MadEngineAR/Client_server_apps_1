@@ -1,6 +1,9 @@
 import socket
 import sys
 import json
+
+from select import select
+
 from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT
 from common.utils import get_message, send_message
@@ -72,19 +75,35 @@ def main_server():
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.bind((listen_address, listen_port))
     s.listen(MAX_CONNECTIONS)
+    s.settimeout(1)
+    client_sockets = []
+
 
     while True:
-        client, client_address = s.accept()
         try:
-            message_from_client = get_message(client)
-            # message_from_client = '1' - Вызов ошибки в лог
-            # print(message_from_client)
-            response = process_client_message(message_from_client)
-            send_message(client, response)
-            client.close()
-        except (ValueError, json.JSONDecodeError):
-            print('Некорректное сообщение от клиента')
-            client.close()
+            client, client_address = s.accept()
+        except OSError as e:
+             print(e.errno)
+        else:
+            client_sockets.append(client)
+            # print(client_sockets)
+        finally:
+            for client_socket in client_sockets:
+                cl_read = []
+                print(cl_read)
+                cl_read, _, _ = select(client_sockets, [], [], 0)
+                print(cl_read)
+                if client_socket in cl_read:
+                    try:
+                        message_from_client = get_message(client_socket)
+                        # message_from_client = '1' - Вызов ошибки в лог
+                        # print(message_from_client)
+                        response = process_client_message(message_from_client)
+                        send_message(client_socket, response)
+                        # client_socket.close()
+                    except (ValueError, json.JSONDecodeError):
+                        print('Некорректное сообщение от клиента')
+                        # client_socket.close()
 
 
 if __name__ == '__main__':
