@@ -29,9 +29,13 @@ def make_presence(login='Guest'):
 def response_process(message):
     # Разбор ответ сервера
     if 'response' in message:
-        if message['response'] == 200:
+        if message['response'] == 200 and message['data']:
+            return message['data']
+        elif message['response'] == 200:
             logger.info('Соединение с сервером: нормальное')
             return 'На связи!'
+        # if message['action'] == 'message':
+        #     return message['message_text']
         logger.warning('Bad request 400')
         return f'Bad request 400'
     logger.error('Ошибка чтения данных')
@@ -55,16 +59,24 @@ def main_client():
 
     # Инициализация сокета и обмен
     s = MySocket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((server_address, server_port))
+
     s.is_listener = True
     # send_message(s, make_presence())
-    try:
-        server_answer = response_process(get_message(s))
-        # server_answer = response_process('1') - Вызов ValueError - запись в лог - ERROR
-        return server_answer
-    except (ValueError, json.JSONDecodeError):
-        return 'Ошибка декодирования'
+    s.connect((server_address, server_port))
+    while True:
+        try:
+            server_answer = response_process(get_message(s))
+            # server_answer = response_process('1') - Вызов ValueError - запись в лог - ERROR
+            print(server_answer)
+
+        except (ValueError, json.JSONDecodeError):
+            print('Ошибка декодирования')
+            pass
+        except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
+            logger.error(f'Соединение с сервером {server_address} было потеряно.')
+            sys.exit(1)
 
 
 if __name__ == '__main__':
-    print(main_client())
+
+        print(main_client())

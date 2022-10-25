@@ -64,4 +64,5 @@ def send_message(sock, message):
         raise TypeError
     js_message = json.dumps(message)
     encoded_message = js_message.encode(ENCODING)
+
     sock.send(encoded_message)
