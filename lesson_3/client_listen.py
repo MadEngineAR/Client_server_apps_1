@@ -29,36 +29,17 @@ def make_presence(login='Guest'):
 def response_process(message):
     # Разбор ответ сервера
     if 'response' in message:
-        if message['response'] == 200:
+        if message['response'] == 200 and message['data']:
+            return message['data']
+        elif message['response'] == 200:
             logger.info('Соединение с сервером: нормальное')
             return 'На связи!'
+        # if message['action'] == 'message':
+        #     return message['message_text']
         logger.warning('Bad request 400')
         return f'Bad request 400'
     logger.error('Ошибка чтения данных')
     raise ValueError
-
-
-def create_message(sock, login='Guest'):
-    """Функция запрашивает текст сообщения и возвращает его.
-    Так же завершает работу при вводе подобной комманды
-    """
-    message = input('Введите сообщение для отправки или \'exit\' для завершения работы: ')
-    if message == 'exit':
-        sock.close()
-        logger.info('Завершение работы по команде пользователя.')
-        print('Спасибо за использование нашего сервиса!')
-        sys.exit(0)
-    message_dict = {
-        'action': 'message',
-        'time': time.time(),
-        'user': {
-            "account_name": login,
-            "status": "Yep, I am here!"
-        },
-        'message_text': message
-    }
-    logger.debug(f'Сформирован словарь сообщения: {message_dict}')
-    return message_dict
 
 
 def main_client():
@@ -78,29 +59,24 @@ def main_client():
 
     # Инициализация сокета и обмен
     s = MySocket(socket.AF_INET, socket.SOCK_STREAM)
-    s.is_sender = True
-    s.connect((server_address, server_port))
+
+    s.is_listener = True
     # send_message(s, make_presence())
+    s.connect((server_address, server_port))
     while True:
         try:
-            message = create_message(s)
-            send_message(s, message)
+            server_answer = response_process(get_message(s))
+            # server_answer = response_process('1') - Вызов ValueError - запись в лог - ERROR
+            print(server_answer)
+
+        except (ValueError, json.JSONDecodeError):
+            print('Ошибка декодирования')
+            pass
         except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
             logger.error(f'Соединение с сервером {server_address} было потеряно.')
             sys.exit(1)
 
 
-
-
-    # return f' РЕЖИМ - ОТПРАВКА {s.getsockname()}'
-
-    # try:
-    #     server_answer = response_process(get_message(s))
-    #     # server_answer = response_process('1') - Вызов ValueError - запись в лог - ERROR
-    #     return server_answer
-    # except (ValueError, json.JSONDecodeError):
-    #     return 'Ошибка декодирования'
-
-
 if __name__ == '__main__':
+
         print(main_client())
