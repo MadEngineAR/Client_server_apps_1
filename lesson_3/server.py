@@ -18,7 +18,7 @@ def process_client_message(message):
         msg = {RESPONSE: 200}
         logger.info(f'Соединение с клиентом: НОРМАЛЬНОЕ {msg}')
 
-        return {RESPONSE: 200}
+        return {RESPONSE: 200, 'data': None}
     elif ACTION in message and message[ACTION] == 'message' and TIME in message \
             and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
         return {RESPONSE: 200, 'data': message['message_text']}
@@ -77,7 +77,7 @@ def main_server():
     s.bind((listen_address, listen_port))
     s.listen(MAX_CONNECTIONS)
     s.settimeout(2)
-    client_sockets = []
+    clients = []
     client_sockets_senders = []
     # client_sockets_listeners = []
     messages = []
@@ -88,55 +88,96 @@ def main_server():
         except OSError as e:
             print(e.errno)
         else:
-            client_sockets.append(client)
+            clients.append(client)
+
             # print(client_sockets)
         finally:
-            cl_read = []
-            cl_write = []
-            if client_sockets:
-                cl_read, cl_write, _ = select(client_sockets, client_sockets, [], 0)
-                # print(cl_read)
-            if cl_read:
-                for s_sender in cl_read:
-                    try:
-                        message_from_client = get_message(s_sender)
-                        messages.append(message_from_client)
-                        cl_write.remove(s_sender)
-                        client_sockets_senders.append(s_sender)
-                        # if message_from_client:
-                        #     messages.append(message_from_client)
-                        # message_from_client = '1' - Вызов ошибки в лог
-                        # print(message_from_client)
-                        # cl_write.remove(client_socket)
-                        # print(cl_write)
-                        # response = process_client_message(message_from_client)
-                        # send_message(client_socket, response)
-                        # client_socket.close()
-                    except (ValueError, json.JSONDecodeError):
-                        print('Некорректное сообщение от клиента')
-                        # client_socket.close()
-                        # cl_read.remove(client_socket)
-                    except ConnectionError:
-                        print('<>')
-                        cl_read.remove(s_sender)
-                        cl_write.remove(s_sender)
+            recv_data_lst = []
+            send_data_lst = []
+            err_lst = []
+            # Проверяем на наличие ждущих клиентов
+            try:
+                if clients:
+                    recv_data_lst, send_data_lst, err_lst = select(clients, clients, [], 0)
+            except OSError:
+                pass
 
-            if cl_write and messages:
+            # принимаем сообщения и если ошибка, исключаем клиента.
+            if recv_data_lst:
+                for client_with_message in recv_data_lst:
+                    try:
+                        message_from_client = get_message(client_with_message)
+                        messages.append(message_from_client)
+                        process_client_message(message_from_client)
+                    except Exception:
+                        logger.info(f'Клиент {client_with_message.getpeername()} '
+                                    f'отключился от сервера.')
+                        clients.remove(client_with_message)
+
+            # Если есть сообщения, обрабатываем каждое.
+            if send_data_lst and messages:
                 for message in messages:
                     messages.remove(message)
-                    for s_listener in cl_write:
-                        print(cl_write)
+                    # print(message)
+                    # print(messages)
+                    for s_listener in send_data_lst:
                         if s_listener not in client_sockets_senders:
                             try:
                                 response = process_client_message(message)
                                 send_message(s_listener, response)
-                                print(f'Отправлено {message["message_text"]} клиенту {s_listener}')
-                                # cl_write.remove(s_listener)
-
-
+                                if response != {RESPONSE: 200, 'data': None}:
+                                    print(f'Отправлено {message["message_text"]} клиенту {s_listener}')
+                                # send_data_lst.remove(s_listener)
                             except BrokenPipeError:
                                 print('Вах')
-                                cl_write.remove(s_listener)
+                                send_data_lst.remove(s_listener)
+            # cl_read = []
+            # cl_write = []
+            # if client_sockets:
+            #     cl_read, cl_write, _ = select(client_sockets, client_sockets, [], 0)
+            #     print(cl_read)
+            # if cl_read:
+            #     for s_sender in cl_read:
+            #         try:
+            #             message_from_client = get_message(s_sender)
+            #             messages.append(message_from_client)
+            #             # cl_write.remove(s_sender)
+            #             # client_sockets_senders.append(s_sender)
+            #             # if message_from_client:
+            #             #     messages.append(message_from_client)
+            #             # message_from_client = '1' - Вызов ошибки в лог
+            #             # print(message_from_client)
+            #             # cl_write.remove(client_socket)
+            #             # print(cl_write)
+            #             # response = process_client_message(message_from_client)
+            #             # send_message(client_socket, response)
+            #             # client_socket.close()
+            #         except (ValueError, json.JSONDecodeError):
+            #             print('Некорректное сообщение от клиента')
+            #
+            #             # s_sender.close()
+            #             cl_read.remove(s_sender)
+            #         except ConnectionError:
+            #             print('<>')
+            #             cl_read.remove(s_sender)
+            #             cl_write.remove(s_sender)
+            #
+            # if cl_write and messages:
+            #     for message in messages:
+            #         messages.remove(message)
+            #         print(message)
+            #         print(messages)
+            #         for s_listener in cl_write:
+            #             if s_listener not in client_sockets_senders:
+            #                 try:
+            #                     response = process_client_message(message)
+            #                     send_message(s_listener, response)
+            #                     if response != {RESPONSE: 200, 'data': None}:
+            #                         print(f'Отправлено {message["message_text"]} клиенту {s_listener}')
+            #                     # cl_write.remove(s_listener)
+            #                 except BrokenPipeError:
+            #                     print('Вах')
+            #                     cl_write.remove(s_listener)
 
 
 if __name__ == '__main__':
