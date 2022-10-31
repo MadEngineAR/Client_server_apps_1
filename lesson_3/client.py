@@ -6,7 +6,6 @@ import time
 from common.variables import DEFAULT_IP_ADDRESS, DEFAULT_PORT
 from common.utils import get_message, send_message
 import logging
-from my_socket import MySocket
 from errors import IncorrectDataRecivedError, ReqFieldMissingError, ServerError
 
 logger = logging.getLogger('client')
@@ -26,7 +25,10 @@ def create_exit_message(account_name):
 
 def user_interactive(sock, username=None):
     """Функция взаимодействия с пользователем, запрашивает команды, отправляет сообщения"""
-    # print_help()
+    print('Поддерживаемые команды:')
+    print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
+    print('help - вывести подсказки по командам')
+    print('exit - выход из программы')
 
     while True:
         command = input('Введите команду: ')
@@ -62,7 +64,6 @@ def make_presence(sock, login=None):
         'user': {
             "account_name": login,
             "sock": sock.getsockname(),
-            "status": "Yep, I am here!"
         }
     }
     return data
@@ -72,20 +73,14 @@ def response_process(sock):
     try:
         message = get_message(sock)
         if 'response' in message:
-            # if message['response'] == 200 and message['data']:
-            #     return message['data']
             if message['response'] == 200:
                 logger.info('Соединение с сервером: нормальное')
-                return {'msg': 'На связи', 'login':message['login']}
-            # if message['action'] == 'message':
-            #     return message['message_text']1
+                return {'msg': 'На связи', 'login': message['login']}
             logger.warning('Bad request 400')
             return f'Bad request 400'
         logger.error('Ошибка чтения данных')
     except ValueError:
         print('Ошибка чтения данных')
-
-        # Разбор ответ сервера
 
 
 def message_from_server(sock, username=None):
@@ -94,18 +89,9 @@ def message_from_server(sock, username=None):
             message = get_message(sock)
             if 'response' in message:
                 if message['response'] == 200 and message['data']:
-                    print(f'\nПолучено сообщение от клиента {message["name"]}\n {message["data"]}')
-                    # return
-                # elif message['response'] == 200 and message['data'] is None:
-                #     logger.info('Соединение с сервером: нормальное')
-                #     return 'На связи!'
-                # if message['action'] == 'message':
-                #     return message['message_text']
+                    print(f'\nПолучено сообщение от клиента {message["login"]}\n {message["data"]}')
                 logger.info('Bad request 400')
-                # return f'Bad request 400'
             logger.info('Ошибка чтения данных')
-            # raise ValueError
-
         except (IncorrectDataRecivedError, ValueError):
             logger.error(f'Не удалось декодировать полученное сообщение.')
         except (OSError, ConnectionError, ConnectionAbortedError,
@@ -126,15 +112,13 @@ def create_message(sock, login='Guest'):
         'action': 'message',
         'time': time.time(),
         'user': {
-            "account_name": login,
-            "status": "Yep, I am here!"
+            'account_name': login,
+            'sock': sock.getsockname(),
         },
-        'sock': sock.getsockname(),
         'to': to,
         'message_text': message
     }
     logger.debug(f'Сформирован словарь сообщения: {message_dict}')
-    print(message_dict)
     return message_dict
 
 

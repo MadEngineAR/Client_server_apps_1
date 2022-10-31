@@ -62,7 +62,6 @@ def make_presence(sock, login=None):
         'user': {
             "account_name": login,
             "sock": sock.getsockname(),
-            "status": "Yep, I am here!"
         }
     }
     return data
@@ -76,7 +75,7 @@ def response_process(sock):
             #     return message['data']
             if message['response'] == 200:
                 logger.info('Соединение с сервером: нормальное')
-                return {'msg': 'На связи', 'login':message['login']}
+                return {'msg': 'На связи', 'login': message['login']}
             # if message['action'] == 'message':
             #     return message['message_text']1
             logger.warning('Bad request 400')
@@ -94,7 +93,7 @@ def message_from_server(sock, username=None):
             message = get_message(sock)
             if 'response' in message:
                 if message['response'] == 200 and message['data']:
-                    print(f'\nПолучено сообщение от клиента {message["name"]}\n {message["data"]}')
+                    print(f'\nПолучено сообщение от клиента {message["login"]}\n {message["data"]}')
                     # return
                 # elif message['response'] == 200 and message['data'] is None:
                 #     logger.info('Соединение с сервером: нормальное')
@@ -127,9 +126,8 @@ def create_message(sock, login='Guest'):
         'time': time.time(),
         'user': {
             "account_name": login,
-            "status": "Yep, I am here!"
+            'sock': sock.getsockname(),
         },
-        'sock': sock.getsockname(),
         'to': to,
         'message_text': message
     }
