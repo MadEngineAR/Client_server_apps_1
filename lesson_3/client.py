@@ -24,9 +24,10 @@ def create_exit_message(account_name):
     }
 
 
-def user_interactive(sock, username):
+def user_interactive(sock, username=None):
     """Функция взаимодействия с пользователем, запрашивает команды, отправляет сообщения"""
     # print_help()
+
     while True:
         command = input('Введите команду: ')
         if command == 'message':
@@ -47,7 +48,10 @@ def user_interactive(sock, username):
             print('Команда не распознана, попробуйте снова. help - вывести поддерживаемые команды.')
 
 
-def make_presence(login='Guest'):
+def make_presence(sock, login=None):
+    if not login:
+        login = input('Введите имя пользователя: ')
+
     logger.debug('Сформировано сообщение серверу')
 
     # Генерация запроса о присутствии клиента
@@ -57,6 +61,7 @@ def make_presence(login='Guest'):
         'type': 'status',
         'user': {
             "account_name": login,
+            "sock": sock.getsockname(),
             "status": "Yep, I am here!"
         }
     }
@@ -64,16 +69,36 @@ def make_presence(login='Guest'):
 
 
 def response_process(sock):
+    try:
+        message = get_message(sock)
+        if 'response' in message:
+            # if message['response'] == 200 and message['data']:
+            #     return message['data']
+            if message['response'] == 200:
+                logger.info('Соединение с сервером: нормальное')
+                return {'msg': 'На связи', 'login':message['login']}
+            # if message['action'] == 'message':
+            #     return message['message_text']1
+            logger.warning('Bad request 400')
+            return f'Bad request 400'
+        logger.error('Ошибка чтения данных')
+    except ValueError:
+        print('Ошибка чтения данных')
+
+        # Разбор ответ сервера
+
+
+def message_from_server(sock, username=None):
     while True:
         try:
             message = get_message(sock)
             if 'response' in message:
                 if message['response'] == 200 and message['data']:
-                    print(f'\nПолучено сообщение\n {message["data"]}')
+                    print(f'\nПолучено сообщение от клиента {message["name"]}\n {message["data"]}')
                     # return
-                elif message['response'] == 200 and message['data'] is None:
-                    logger.info('Соединение с сервером: нормальное')
-                    return 'На связи!'
+                # elif message['response'] == 200 and message['data'] is None:
+                #     logger.info('Соединение с сервером: нормальное')
+                #     return 'На связи!'
                 # if message['action'] == 'message':
                 #     return message['message_text']
                 logger.info('Bad request 400')
@@ -88,7 +113,6 @@ def response_process(sock):
             logger.critical(f'Потеряно соединение с сервером.')
             print('Потеряно соединение с сервером.')
             break
-            # Разбор ответ сервера
 
 
 def create_message(sock, login='Guest'):
@@ -96,12 +120,8 @@ def create_message(sock, login='Guest'):
     Так же завершает работу при вводе подобной комманды
     """
 
-    message = input('Введите сообщение для отправки или \'exit\' для завершения работы: ')
-    # if message == 'exit':
-    #     sock.close()
-    #     logger.info('Завершение работы по команде пользователя.')
-    #     print('Спасибо за использование нашего сервиса!')
-    #     sys.exit(0)
+    message = input('Введите сообщение для отправки: ')
+    to = input('Введите получателя(-ей) сообщения: ')
     message_dict = {
         'action': 'message',
         'time': time.time(),
@@ -109,9 +129,12 @@ def create_message(sock, login='Guest'):
             "account_name": login,
             "status": "Yep, I am here!"
         },
+        'sock': sock.getsockname(),
+        'to': to,
         'message_text': message
     }
     logger.debug(f'Сформирован словарь сообщения: {message_dict}')
+    print(message_dict)
     return message_dict
 
 
@@ -133,9 +156,10 @@ def main_client():
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((server_address, server_port))
-        send_message(s, make_presence(login='Guest'))
+        send_message(s, make_presence(s, login=None))
         answer = response_process(s)
-        logger.info(f'Установлено соединение с сервером. Ответ сервера: {answer}')
+        logger.info(f'Установлено соединение с сервером. Ответ сервера: {answer["msg"]}')
+        print(f'ИМЯ ПОЛЬЗОВАТЕЛЯ: {answer["login"]}')
         print(f'Установлено соединение с сервером.')
     except json.JSONDecodeError:
         logger.error('Не удалось декодировать полученную Json строку.')
@@ -154,12 +178,12 @@ def main_client():
         sys.exit(1)
     else:
 
-        receiver = threading.Thread(target=response_process, args=(s,))
+        receiver = threading.Thread(target=message_from_server, args=(s,))
         receiver.daemon = True
         receiver.start()
 
         # затем запускаем отправку сообщений и взаимодействие с пользователем.
-        user_interface = threading.Thread(target=user_interactive, args=(s, 'Guest'))
+        user_interface = threading.Thread(target=user_interactive, args=(s, answer["login"]))
         user_interface.daemon = True
         user_interface.start()
         # user_interface.join()

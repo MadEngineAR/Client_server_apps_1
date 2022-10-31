@@ -11,17 +11,19 @@ import logging
 logger = logging.getLogger('server')
 
 
-def process_client_message(message):
+def process_client_message(message, login):
     logger.debug(f'Получено сообщение от клиента {message}')
+    print(message)
     if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
-            and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
+            and USER in message and message[USER][ACCOUNT_NAME] == login :
         msg = {RESPONSE: 200}
         logger.info(f'Соединение с клиентом: НОРМАЛЬНОЕ {msg}')
 
-        return {RESPONSE: 200, 'data': None}
+        return {RESPONSE: 200, 'data': None, 'login': message[USER][ACCOUNT_NAME]}
     elif ACTION in message and message[ACTION] == 'message' and TIME in message \
-            and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
-        return {RESPONSE: 200, 'data': message['message_text']}
+            and USER in message and message[USER][ACCOUNT_NAME]:
+        return {RESPONSE: 200, 'data': message['message_text'], 'name':message['user']['account_name'],
+                'to': message['to'], 'sock': message['sock']}
     msg = {
         RESPONSE: 400,
         ERROR: 'Bad Request'
@@ -78,7 +80,7 @@ def main_server():
     s.listen(MAX_CONNECTIONS)
     s.settimeout(2)
     clients = []
-    client_sockets_senders = []
+    client_sockets_senders = {}
     # client_sockets_listeners = []
     messages = []
     while True:
@@ -89,12 +91,14 @@ def main_server():
             print(e.errno)
         else:
             clients.append(client)
+            client_sockets_senders['login'] = client.getpeername()
 
-            # print(client_sockets)
+            print(client_sockets_senders)
         finally:
             recv_data_lst = []
             send_data_lst = []
             err_lst = []
+            users = []
             # Проверяем на наличие ждущих клиентов
             try:
                 if clients:
@@ -109,6 +113,8 @@ def main_server():
                         message_from_client = get_message(client_with_message)
                         messages.append(message_from_client)
                         process_client_message(message_from_client)
+                        print( process_client_message(message_from_client))
+
                     except Exception:
                         logger.info(f'Клиент {client_with_message.getpeername()} '
                                     f'отключился от сервера.')
@@ -118,15 +124,14 @@ def main_server():
             if send_data_lst and messages:
                 for message in messages:
                     messages.remove(message)
-                    # print(message)
-                    # print(messages)
                     for s_listener in send_data_lst:
-                        if s_listener not in client_sockets_senders:
+                        if s_listener.getpeername() in client_sockets_senders.values():
+                            # and s_listener.getpeername() == :
                             try:
-                                response = process_client_message(message)
+                                response = process_client_message(message, message[USER][ACCOUNT_NAME])
                                 send_message(s_listener, response)
-                                if response != {RESPONSE: 200, 'data': None}:
-                                    print(f'Отправлено {message["message_text"]} клиенту {s_listener}')
+                                if response != {RESPONSE: 200, 'data': None, 'login': message[USER][ACCOUNT_NAME]}:
+                                    print(f'Отправлено {message} клиенту {s_listener.getpeername()}')
                                 # send_data_lst.remove(s_listener)
                             except BrokenPipeError:
                                 print('Вах')

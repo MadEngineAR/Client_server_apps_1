@@ -47,7 +47,6 @@ def get_message(client):
         if isinstance(json_response, str):
             response = json.loads(json_response)
             if isinstance(response, dict):
-                print(response)
                 return response
             raise ValueError
         raise ValueError
