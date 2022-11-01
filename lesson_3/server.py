@@ -33,19 +33,19 @@ def process_client_message(message):
         }
     elif ACTION in message and message[ACTION] == 'message' and TIME in message \
             and USER in message and message[USER][ACCOUNT_NAME]:
-        print({
-            RESPONSE: 200,
-            'data': message['message_text'],
-            'login': message['user']['account_name'],
-            'to': message['to'],
-            'sock_address': [user['sock'] for user in users if user['account_name'] == message['to']]
-        })
         return {
             RESPONSE: 200,
             'data': message['message_text'],
             'login': message['user']['account_name'],
             'to': message['to'],
             'sock_address': [user['sock'] for user in users if user['account_name'] == message['to']]
+        }
+    elif ACTION in message and message[ACTION] == 'exit' and TIME in message \
+            and USER in message and message[USER][ACCOUNT_NAME]:
+        return  {RESPONSE: 200,
+            'data': None,
+            'login': message['user']['account_name'],
+            'sock': message['user']['sock']
         }
     msg = {
         RESPONSE: 400,
@@ -131,11 +131,18 @@ def main_server():
                 for client_with_message in recv_data_lst:
                     try:
                         message_from_client = get_message(client_with_message)
+                        if message_from_client['action'] == 'exit':
+                            client_with_message.close()
+                            recv_data_lst.remove(client_with_message)
+                            send_data_lst.remove(client_with_message)
                         messages.append(message_from_client)
                         process_client_message(message_from_client)
                     except Exception:
                         logger.info(f'Клиент {client_with_message.getpeername()} '
                                     f'отключился от сервера.')
+                        client_with_message.close()
+                        # recv_data_lst.remove(client_with_message)
+                        # send_data_lst.remove(client_with_message)
                         clients.remove(client_with_message)
 
             # Если есть сообщения, обрабатываем каждое.
